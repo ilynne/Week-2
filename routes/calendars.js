@@ -22,4 +22,9 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+router.delete("/:id", async (req, res, next) => {
+  const calendar = await CalendarDAO.deleteById(req.params.id);
+  res.sendStatus(200);
+});
+
 module.exports = router;
