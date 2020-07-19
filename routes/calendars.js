@@ -2,6 +2,12 @@ const { Router } = require("express");
 const router = Router();
 
 const CalendarDAO = require('../daos/calendars');
+const { get } = require("mongoose");
+
+router.get("/", async (req, res, next) => {
+  const calendars = await CalendarDAO.find();
+  res.json(calendars);
+});
 
 router.post("/", async (req, res, next) => {
   const { name } = req.body;

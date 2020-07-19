@@ -2,6 +2,10 @@ const Calendars = require('../models/calendars');
 
 module.exports = {};
 
+module.exports.find = async () => {
+  return await Calendars.find();
+}
+
 module.exports.create = async (name) => {
   return await Calendars.create({ name });
 };
