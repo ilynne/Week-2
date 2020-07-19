@@ -27,4 +27,10 @@ router.delete("/:id", async (req, res, next) => {
   res.sendStatus(200);
 });
 
+router.put("/:id", async (req, res, next) => {
+  const { name } = req.body;
+  const calendar = await CalendarDAO.findByIdAndUpdate(req.params.id, name);
+  res.json(calendar);
+})
+
 module.exports = router;

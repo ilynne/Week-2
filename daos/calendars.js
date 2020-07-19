@@ -18,3 +18,7 @@ module.exports.getById = async (id) => {
 module.exports.deleteById = async (id) => {
   return await Calendars.deleteOne({ _id: id });
 };
+
+module.exports.findByIdAndUpdate = async (id, name) => {
+  return await Calendars.findByIdAndUpdate(id, { $set: { name: name }});
+};
