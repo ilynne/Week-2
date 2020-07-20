@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const router = Router();
+var events = require('./events');
 
 const CalendarDAO = require('../daos/calendars');
 const { get } = require("mongoose");
@@ -38,5 +39,7 @@ router.put("/:id", async (req, res, next) => {
   const calendar = await CalendarDAO.findByIdAndUpdate(req.params.id, name);
   res.json(calendar);
 })
+
+router.use('/:calendarId/events', events)
 
 module.exports = router;
