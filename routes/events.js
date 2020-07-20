@@ -12,10 +12,8 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   const event = await EventsDAO.getById(req.params.id);
   if (event) {
-    console.log('event exists', event)
     res.json(event);
   } else {
-    console.log('not found')
     res.status(404).send('not found');
   }
 });
