@@ -11,12 +11,7 @@ module.exports.create = async (calendarId, name, date) => {
 };
 
 module.exports.getById = async (id) => {
-  try {
-    const event = await Events.findOne({ _id: id }).lean();
-    return event;
-  } catch (e) {
-    return null;
-  }
+  return await Events.findOne({ _id: id });
 };
 
 module.exports.deleteById = async (id) => {

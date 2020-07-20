@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const eventSchema = new mongoose.Schema({
-  calendarId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'calendars' },
+  calendarId: { type: String, required: true },
   name: { type: String, required: true },
   date: { type: Date, required: true },
 });
