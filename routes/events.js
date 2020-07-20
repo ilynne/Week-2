@@ -39,12 +39,10 @@ router.delete("/:id", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
   const { name, date } = req.body;
-  if (!name) {
-    res.status(400).send('body parameter "name" is required"');
-  } else if (!date) {
-    res.status(400).send('body parameter "date" is required');
+  if (!name || !date) {
+    res.status(400).send('body parameter "name" or "date" is required"');
   } else {
-    const event = await EventsDAO.findByIdAndUpdate(req.params.calendarId, req.params.id, name, date);
+    const event = await EventsDAO.findByIdAndUpdate(req.params.id, name, date);
     res.json(event);
   }
 })

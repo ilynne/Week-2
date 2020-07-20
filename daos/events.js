@@ -18,6 +18,6 @@ module.exports.deleteById = async (id) => {
   return await Events.deleteOne({ _id: id });
 };
 
-module.exports.findByIdAndUpdate = async (id, name) => {
-  return await Events.findByIdAndUpdate(id, { $set: { name: name }});
+module.exports.findByIdAndUpdate = async (id, name, date) => {
+  return await Events.findByIdAndUpdate(id, { $set: { name: name, date: date }});
 };

@@ -69,6 +69,32 @@ describe("/calendars/:calendarId/events", () => {
         });
       });
 
+      describe('PUT /:id after POST /', () => {
+        it('should return a 400 without a provided name or date', async () => {
+          const res = await request(server)
+            .put(`/calendars/${calendar1._id}/events/${event1._id}`)
+            .send({});
+          expect(res.statusCode).toEqual(400);
+        });
+
+        it('should store and return event1 with new name and date', async () => {
+          const res = await request(server)
+            .put(`/calendars/${calendar1._id}/events/${event1._id}`)
+            .send({ name: 'new name', date: '2020-07-15' });
+          expect(res.statusCode).toEqual(200);
+
+          const storedEvent = (await request(server)
+            .get(`/calendars/${calendar1._id}/events/${event1._id}`)).body;
+
+          expect(storedEvent).toMatchObject({
+            name: 'new name',
+            _id: event1._id,
+            calendarId: calendar1._id,
+            date: '2020-07-15T00:00:00.000Z'
+          });
+        });
+      });
+
       describe('DELETE /events/:id after POST', () => {
         let event3;
 
